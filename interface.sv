@@ -20,19 +20,23 @@ bit [127:0]o_rddata;
     input o_rddata;
   endclocking
   
-  clocking m_cb @(posedge clk);
-    default input #1 output #1;
+  clocking active_monitor_cb @(posedge clk);
+    default input #0 output #0;
     input i_wren;
     input i_rden;
-    input data_in;
+    input i_wrdata;
+  endclocking
+  
+clocking passive_monitor_cb @(posedge clk);
     input o_full;
     input o_empty;
-    input  o_alm_full;
+    input o_alm_full;
     input o_alm_empty;
     input o_rddata;
   endclocking
   
-  modport d_mp (input clk, reset, clocking d_cb);
-  modport m_mp (input clk, reset, clocking m_cb);
+modport driver_mp (input clk, reset, clocking driver_cb);
+  modport act_monitor_mp (input clk, reset, clocking active_monitor_cb);
+  modport act_monitor_mp (input clk, reset, clocking passive_monitor_cb);
     
 endinterface
