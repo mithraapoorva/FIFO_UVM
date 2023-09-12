@@ -1,4 +1,4 @@
-class f_seq_item extends uvm_sequence_item;
+class f_sequence_item extends uvm_sequence_item;
   
   //---------------------------------------
   //data and control fields
@@ -37,7 +37,7 @@ class f_seq_item extends uvm_sequence_item;
 
   //Constructor
 
-  function new(string name="f_seq_item");
+  function new(string name="f_sequence_item");
     super.new(name);
   endfunction
   
