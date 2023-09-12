@@ -1,7 +1,7 @@
-class f_monitor extends uvm_monitor;
+   class f_monitor extends uvm_monitor;
   virtual f_interface vif;
-  f_sequence_item item_got;
-  uvm_analysis_port#(f_sequence_item) item_got_port;
+ fifo_seq_item  item_got;
+  uvm_analysis_port#( fifo_seq_item ) item_got_port;
   `uvm_component_utils(f_monitor)
   
   function new(string name = "f_monitor", uvm_component parent);
@@ -12,7 +12,7 @@ class f_monitor extends uvm_monitor;
 
   virtual function void build_phase(uvm_phase phase);
     super.build_phase(phase);
-    item_got = f_sequence_item::type_id::create("item_got");
+    item_got =  fifo_seq_item ::type_id::create("item_got");
     if(!uvm_config_db#(virtual f_interface)::get(this, "", "vif", vif))
       `uvm_fatal("Monitor: ", "No vif is found!")
   endfunction
@@ -22,7 +22,7 @@ class f_monitor extends uvm_monitor;
       @(posedge vif.m_mp.clk)
       if((vif.m_mp.m_cb.i_wren == 1)&&(vif.m_mp.m_cb.i_rden == 0))begin
        $display("\nwrite enable is high and read enable is low");
-        item_got.data_in = vif.m_mp.m_cb.data_in;
+        item_got.i_wrdata = vif.m_mp.m_cb.i_wrdata ;
         item_got.i_wren  = 'b1;
         item_got.i_rden  = 'b0;
         item_got.o_full = vif.m_mp.m_cb.o_full;
@@ -58,6 +58,7 @@ class f_monitor extends uvm_monitor;
         item_got_port.write(item_got);
       end
       end
-    end
+    
+    
   endtask
 endclass
