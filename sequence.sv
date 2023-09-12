@@ -17,16 +17,30 @@ class f_sequence extends uvm_sequence#(f_sequence_item);
      repeat(1024) begin
       req = f_sequence_item::type_id::create("req");
       start_item(req);
-      assert(req.randomize() with { == 1;});
+       assert(req.randomize() with { i_rden == 1;});
       finish_item(req);
     end
     `uvm_info(get_type_name(), $sformatf("******** Generate 20 Random REQs ********"), UVM_LOW)
-    repeat(20) begin
+                                   repeat(20) begin
       req = f_sequence_item::type_id::create("req");
       start_item(req);
       assert(req.randomize());
       finish_item(req);
     end
+         `uvm_info(get_type_name(), $sformatf("******** Generate simaltaneous 20   write and read ********"), UVM_LOW)
+      repeat(20) begin
+      req = f_sequence_item::type_id::create("req");
+      start_item(req);
+        assert(req.randomize()with {i_rden=1;i_wren=1;});
+      finish_item(req);
+    end
+     `uvm_info(get_type_name(), $sformatf("******** Generate 20 no read and write at same time ******"), UVM_LOW)
+    repeat(20) begin
+      req = fifo_seq_item::type_id::create("req");
+      start_item(req);
+      assert(req.randomize() with {(i_rden=0;,iwren=0;)});
+      finish_item(req);
+    end                                 
   endtask
   
 endclass
