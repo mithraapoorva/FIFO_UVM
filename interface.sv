@@ -8,7 +8,7 @@ interface f_interface(input clk, reset);
   bit o_alm_empty;
 bit [127:0]o_rddata;
   
-  clocking d_cb @(posedge clk);
+  clocking driver_cb @(posedge clk);
     default input #1 output #1;
     output i_wren;
     output i_rden;
