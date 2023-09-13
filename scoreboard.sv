@@ -1,4 +1,4 @@
-dclass f_scoreboard extends uvm_scoreboard;
+ class f_scoreboard extends uvm_scoreboard;
   uvm_analysis_imp#(fifo_seq_item , f_scoreboard) item_got_export;
   `uvm_component_utils(f_scoreboard)
     int counter;
@@ -41,7 +41,6 @@ dclass f_scoreboard extends uvm_scoreboard;
         $display("The reference fifo is full");
             end
     end
-      
     else if (item_got.i_rden == 'b1)begin
       if(queue.size() >= 'd1)begin
         counter= counter-1;
@@ -64,9 +63,7 @@ dclass f_scoreboard extends uvm_scoreboard;
               $display("Dut output is matched with reference model");
             end
           else
-            begin
             $display("No match");
-           end
               counter= counter-1;
         examdata = queue.pop_front();
         `uvm_info("Read Data", $sformatf("examdata: %0h o_rddata: %0h o_empty: %0b  o_alm_empty", examdata, item_got.o_rddata, item_got.o_empty , item_got.o_alm_empty), UVM_LOW);
@@ -82,7 +79,7 @@ dclass f_scoreboard extends uvm_scoreboard;
             begin
               $display("The reference fifo is empty");
             end
-                end
+                
+    end
   endfunction
 endclass
-        
