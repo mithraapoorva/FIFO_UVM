@@ -1,4 +1,4 @@
-class f_scoreboard extends uvm_scoreboard;
+dclass f_scoreboard extends uvm_scoreboard;
   uvm_analysis_imp#(fifo_seq_item , f_scoreboard) item_got_export;
   `uvm_component_utils(f_scoreboard)
     int counter;
@@ -77,7 +77,7 @@ class f_scoreboard extends uvm_scoreboard;
           $display("--------		Fail!		--------");
           $display("--------		Check empty	--------");
         end
-           
+           end
               else 
             begin
               $display("The reference fifo is empty");
