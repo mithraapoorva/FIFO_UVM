@@ -40,6 +40,7 @@ class f_scoreboard extends uvm_scoreboard;
             
         $display("The reference fifo is full");
             end
+    end
       
     else if (item_got.i_rden == 'b1)begin
       if(queue.size() >= 'd1)begin
