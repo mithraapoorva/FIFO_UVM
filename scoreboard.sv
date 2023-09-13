@@ -64,7 +64,9 @@ class f_scoreboard extends uvm_scoreboard;
               $display("Dut output is matched with reference model");
             end
           else
+            begin
             $display("No match");
+           end
               counter= counter-1;
         examdata = queue.pop_front();
         `uvm_info("Read Data", $sformatf("examdata: %0h o_rddata: %0h o_empty: %0b  o_alm_empty", examdata, item_got.o_rddata, item_got.o_empty , item_got.o_alm_empty), UVM_LOW);
@@ -75,6 +77,7 @@ class f_scoreboard extends uvm_scoreboard;
           $display("--------		Fail!		--------");
           $display("--------		Check empty	--------");
         end
+           
               else 
             begin
               $display("The reference fifo is empty");
