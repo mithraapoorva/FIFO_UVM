@@ -2,11 +2,11 @@
 `include "fifo_sequence.sv"
 `include "fifo_sequencer.sv"
 `include "fifo_driver .sv"
-`include "f_monitor.sv"
+`include "f_monitor .sv"
 
 class f_agent extends uvm_agent;
-  f_sequencer f_seqr;
-  f_driver f_dri;
+ fifo_sequence f_seqr;
+  fifo_driver  f_dri;
   f_monitor f_mon;
   `uvm_component_utils(f_agent)
   
@@ -17,8 +17,8 @@ class f_agent extends uvm_agent;
   virtual function void build_phase(uvm_phase phase);
     super.build_phase(phase);
     if(get_is_active() == UVM_ACTIVE) begin
-      f_seqr = f_sequencer::type_id::create("f_seqr", this);
-      f_dri = f_driver::type_id::create("f_dri", this);
+      f_seqr = fifo_sequencer ::type_id::create("f_seqr", this);
+      f_dri = fifo_driver ::type_id::create("f_dri", this);
     end
     f_mon = f_monitor::type_id::create("f_mon", this);
   endfunction
