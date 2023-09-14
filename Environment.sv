@@ -1,7 +1,7 @@
-`include "f_sequence_item.sv"
-`include "f_sequence.sv"
-`include "f_sequencer.sv"
-`include "f_driver.sv"
+`include "fifo_seq_item .sv"
+`include "fifo_sequence.sv"
+`include "fifo_sequencer.sv"
+`include "fifo_driver .sv"
 `include "f_monitor.sv"
 
 class f_agent extends uvm_agent;
