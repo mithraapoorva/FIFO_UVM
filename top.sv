@@ -3,28 +3,31 @@ import uvm_pkg::*;
 `include "f_interface.sv"
 `include "f_test.sv"
 
+
 module tb;
   bit clk;
-  bit reset;
+  bit rstn;
   
   always #5 clk = ~clk;
   
   initial begin
     clk = 1;
-    reset = 1;
+    rstn = 0;
     #5;
-    reset = 0;
+    rstn = 1;
   end
   
-  f_interface tif(clk, reset);
+  f_interface tif (clk, rstn);
   
-  SYN_FIFO dut(.clk(tif.clk),
-               .reset(tif.reset),
+ my_fifo dut(.clk(tif.clk),
+               .rstn(tif.rstn),
                .i_wrdata(tif.i_wrdata),
                .i_wren(tif.i_wren),
-               . i_rden(tif. i_rden),
+               .i_rden(tif. i_rden),
                .o_full(tif.o_full),
                .o_empty(tif.o_empty),
+               .o_alm_full(tif.o_alm_full),
+               .o_alm_empty(tif.o_alm_empty),
                .o_rddata(tif.o_rddata));
   
   initial begin
@@ -33,5 +36,7 @@ module tb;
     $dumpvars;
     run_test("f_test");
   end
-  
+  initial begin
+ #1500 $finish ;
+  end
 endmodule
