@@ -1,7 +1,8 @@
+
 `include "uvm_macros.svh"
 import uvm_pkg::*;
 
- 
+ //sequence item
 
 class fifo_seq_item extends uvm_sequence_item;
 
@@ -31,7 +32,7 @@ class fifo_seq_item extends uvm_sequence_item;
   `uvm_field_int(o_rddata, UVM_ALL_ON)
   `uvm_object_utils_end
 
-  constraint c1{i_rden!=i_wren;};
+
 
   //---------------------------------------
   //Pre randomize function
