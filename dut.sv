@@ -28,7 +28,7 @@ logic [DATA_W - 1        : 0] data_rg [DEPTH] ;        // Data array
 logic [$clog2(DEPTH) - 1 : 0] wrptr_rg        ;        // Write pointer
 logic [$clog2(DEPTH) - 1 : 0] rdptr_rg        ;        // Read pointer
 logic [$clog2(DEPTH)     : 0] dcount_rg       ;        // Data counter
-logic ready_rg ;      
+logic ready_rg = 0 ;      
 logic                         wren_s          ;        // Write Enable signal generated iff FIFO is not full
 logic                         rden_s          ;        // Read Enable signal generated iff FIFO is not empty
 logic                         full_s          ;        // Full signal
