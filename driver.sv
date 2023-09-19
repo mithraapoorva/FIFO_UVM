@@ -1,6 +1,6 @@
-
+    
 class fifo_driver extends uvm_driver#(fifo_seq_item);
-  virtual fifo_interface vif;
+  virtual f_interface vif;
   fifo_seq_item req;
   `uvm_component_utils(fifo_driver)
 
@@ -10,7 +10,7 @@ class fifo_driver extends uvm_driver#(fifo_seq_item);
 
   virtual function void build_phase(uvm_phase phase);
     super.build_phase(phase);
-    if(!uvm_config_db#(virtual fifo_interface)::get(this, "", "vif", vif))
+    if(!uvm_config_db#(virtual f_interface)::get(this, "", "vif", vif))
       `uvm_fatal("Driver: ", "No vif is found!")
   endfunction
 
@@ -30,11 +30,11 @@ class fifo_driver extends uvm_driver#(fifo_seq_item);
     end
   endtask
 
-    virtual task main_write(input [7:0] din);
+    virtual task main_write(input [127:0] din);
     @(posedge vif.d_mp.clk)
     vif.d_mp.d_cb.i_wren <= 'b1;
     vif.d_mp.d_cb.i_wrdata <= din;
-    @(posedge vif.d_mp.clk)
+      @(posedge vif.d_mp.clk)
     vif.d_mp.d_cb.i_wren <= 'b0;
   endtask
 
@@ -45,5 +45,3 @@ class fifo_driver extends uvm_driver#(fifo_seq_item);
     vif.d_mp.d_cb.i_rden <= 'b0;
   endtask
 endclass
-
-   
