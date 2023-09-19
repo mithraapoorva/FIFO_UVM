@@ -1,3 +1,6 @@
+//interface
+
+
 interface f_interface(input clk, rstn);
   bit i_wren;
   bit i_rden;
@@ -9,14 +12,17 @@ interface f_interface(input clk, rstn);
   bit [127:0] o_rddata;
   
   clocking d_cb @(posedge clk);
-    default input #1 output #0;
+    default input #1 output #1;
     output i_wren;
     output i_rden;
     output i_wrdata;
   endclocking
   
   clocking m_cb @(posedge clk);
-    default input #1 output #0;
+    default input #1 output #1;
+    input i_wren;
+    input i_rden;
+    input i_wrdata;
     input o_full;
     input o_empty;
     input o_alm_full;
