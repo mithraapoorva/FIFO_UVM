@@ -4,6 +4,7 @@
 `include "fifo_driver .sv"
 `include "f_monitor .sv"
 
+
 class f_agent extends uvm_agent;
  fifo_sequencer f_seqr;
   fifo_driver  f_dri;
@@ -30,4 +31,3 @@ class f_agent extends uvm_agent;
   endfunction
   
 endclass
-    
