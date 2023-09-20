@@ -21,7 +21,7 @@ class f_scoreboard extends uvm_scoreboard;
       queue.push_back(item_got.i_wrdata);
       `uvm_info("write Data", $sformatf("i_wren: %0b i_rden: %0b i_wrdata: %0h o_full: %0b  o_alm_full: %0b",item_got.i_wren, item_got.i_rden,item_got.i_wrdata, item_got.o_full, item_got.o_alm_full), UVM_LOW);
      // end
-       if(queue.size() >=6  && queue.size() < 10)
+           if(queue.size() >=1020  && queue.size() < 1024)
         begin
             
           $display("The reference fifo is  Almost full");
@@ -33,7 +33,7 @@ class f_scoreboard extends uvm_scoreboard;
             $display("Is not almost full");
         
         end
-      if(queue.size() == 10) 
+           if(queue.size() == 1024) 
             begin
             
         $display("The reference fifo is full");
