@@ -1,5 +1,5 @@
-`include "f_agent.sv"
-`include "f_scoreboard .sv"
+`include "Agent.sv"
+`include "scoreboard .sv"
 
 
 class f_environment extends uvm_env;
