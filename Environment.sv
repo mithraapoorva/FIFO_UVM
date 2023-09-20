@@ -21,7 +21,7 @@ fifo_subscriber f_sub;
   endfunction
 
   virtual function void connect_phase(uvm_phase phase);
- f_agt.f_mon.item_got_port.connect(f_sub.item_got_export1);
+  f_agt.f_mon.item_got_port.connect(f_sub.item_got_export1);
     f_agt.f_mon.item_got_port.connect(f_scb.item_got_export);
   endfunction
 
