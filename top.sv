@@ -1,7 +1,7 @@
 import uvm_pkg::*;
 `include "uvm_macros.svh"
-`include "f_interface.sv"
-`include "f_test.sv"
+`include "interface.sv"
+`include "Test.sv"
 `include " my_fifo .sv"
 
 module tb;
