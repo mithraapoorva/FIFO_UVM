@@ -2,7 +2,7 @@
 `include "sequence.sv"
 `include "Sequencer.sv"
 `include "driver.sv"
-`include "f_monitor.sv"
+`include "monitor.sv"
 
 
 class f_agent extends uvm_agent;
